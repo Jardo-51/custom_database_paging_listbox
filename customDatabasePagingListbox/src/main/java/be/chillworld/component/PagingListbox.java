@@ -43,6 +43,7 @@ public class PagingListbox extends Idspace implements AfterCompose {
     private boolean multiple = false;
     private boolean checkmark = false;
     private boolean detailed = true;
+    private int rows = -1;
     private PagingModel pagingModel;
     private int pageSize = 20;
     private int activePage;
@@ -89,6 +90,7 @@ public class PagingListbox extends Idspace implements AfterCompose {
         listbox = new Listbox();
         this.appendChild(listbox);
         listbox.addEventListener("onSelect", onSelectListener);
+        listbox.setRows(rows);
         bottomPaging = new Paging();
         this.appendChild(bottomPaging);
         pagers.add(topPaging);
@@ -290,4 +292,13 @@ public class PagingListbox extends Idspace implements AfterCompose {
     public void setDetailed(boolean detailed) {
         this.detailed = detailed;
     }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
 }
