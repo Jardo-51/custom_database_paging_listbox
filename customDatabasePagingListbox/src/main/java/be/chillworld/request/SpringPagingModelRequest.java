@@ -1,9 +1,10 @@
+package be.chillworld.request;
+
 import be.chillworld.model.SortDirection;
 import be.chillworld.request.CurrentPageExceedException;
 import be.chillworld.request.PagingModelRequest;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -41,7 +42,7 @@ public abstract class SpringPagingModelRequest implements PagingModelRequest {
         } else {
             direction = Sort.Direction.ASC;
         }
-        if (!StringUtils.isEmpty(sortField)) {
+        if ((sortField != null) && (!sortField.isEmpty())) {
             List<Order> sortOrders = new ArrayList<>();
             for (String field : sortField.split("(\\s*,\\s*)|(\\s*;\\s*)|(\\s+)")) {// split on (',' or ';' or space) with leading or ending spaces.
                 sortOrders.add(createSortOrder(field, direction));
