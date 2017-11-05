@@ -29,12 +29,12 @@ import org.zkoss.zk.ui.WrongValueException;
  *
  * @author cossaer.f
  */
-public abstract class SpringPagingModelRequest implements PagingModelRequest {
+public abstract class SpringPagingModelRequest<T> implements PagingModelRequest<T> {
 
     private long totalSize;
 
     @Override
-    public List getContent(int activePage, int pageSize, String sortField, SortDirection sortDirection) throws CurrentPageExceedException {
+    public List<T> getContent(int activePage, int pageSize, String sortField, SortDirection sortDirection) throws CurrentPageExceedException {
         PageRequest request;
         Sort.Direction direction;
         if (sortDirection != null) {
@@ -52,7 +52,7 @@ public abstract class SpringPagingModelRequest implements PagingModelRequest {
             request = new PageRequest(activePage, pageSize);
         }
         // bug fix when usage with filters and currentPage is larger then totalpages.
-        Page page = getPage(request);
+        Page<T> page = getPage(request);
         if (page.getTotalPages()<=activePage) {
             throw new CurrentPageExceedException();
         }
@@ -65,7 +65,7 @@ public abstract class SpringPagingModelRequest implements PagingModelRequest {
         return totalSize;
     }
 
-    public abstract Page getPage(PageRequest request);
+    public abstract Page<T> getPage(PageRequest request);
 
     private Order createSortOrder(String sortField, Sort.Direction direction) {
         String[] splitted = sortField.split("(\\()");
