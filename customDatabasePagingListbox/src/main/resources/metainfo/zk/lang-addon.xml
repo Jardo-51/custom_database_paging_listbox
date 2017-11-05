@@ -7,4 +7,9 @@
         <extends>idspace</extends>
         <component-class>be.chillworld.component.PagingListbox</component-class>
     </component>
+    <component>
+        <component-name>paginglisthead</component-name>
+        <extends>listhead</extends>
+        <component-class>be.chillworld.component.PagingListhead</component-class>
+    </component>
 </language-addon>
