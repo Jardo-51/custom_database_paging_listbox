@@ -4,8 +4,6 @@ import be.chillworld.request.CurrentPageExceedException;
 import be.chillworld.request.PagingModelRequest;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
