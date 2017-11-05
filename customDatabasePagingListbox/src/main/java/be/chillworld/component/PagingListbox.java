@@ -35,6 +35,8 @@ import org.zkoss.zul.event.PagingEvent;
     "selectedItem:@ZKBIND(ACCESS=both,SAVE_EVENT=onSelect)"})
 public class PagingListbox extends Idspace implements AfterCompose {
 
+    private static final long serialVersionUID = -6012675293354316282L;
+
     private String pagingPosition = "top";
     private String emptyMessage = "";
     private String template = null;
