@@ -166,6 +166,12 @@ public class PagingListbox extends Idspace implements AfterCompose {
     }
 
     public void setModel(PagingModel pagingModel) {
+        pagingModel.setReloadListener(new ReloadListener() {
+            @Override
+            public void onReload() {
+                refreshModel();
+            }
+        });
         this.pagingModel = pagingModel;
         refreshModel();
     }

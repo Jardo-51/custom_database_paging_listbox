@@ -14,6 +14,7 @@ public class PagingModel<T> {
     private String sortField;
     private PagingModelRequest pagingModelRequest;
     private SortDirection sortDirection;
+    private ReloadListener reloadListener;
 
     public PagingModel(PagingModelRequest request) {
         this(request, null, null);
@@ -61,5 +62,23 @@ public class PagingModel<T> {
     public void setPagingModelRequest(PagingModelRequest request) {
         Objects.requireNonNull(request, "PageModelRequest can't be null.");
         this.pagingModelRequest = request;
+    }
+
+    public ReloadListener getReloadListener() {
+        return reloadListener;
+    }
+
+    public void setReloadListener(ReloadListener reloadListener) {
+        this.reloadListener = reloadListener;
+    }
+
+    public void reload() {
+        if (reloadListener != null) {
+            reloadListener.onReload();
+        }
+    }
+
+    public interface ReloadListener {
+        public void onReload();
     }
 }
