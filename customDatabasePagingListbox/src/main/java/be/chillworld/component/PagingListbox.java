@@ -37,6 +37,8 @@ public class PagingListbox extends Idspace implements AfterCompose {
 
     private static final long serialVersionUID = -6012675293354316282L;
 
+    private static final int PAGING_COMPONENT_HEIGHT = 32;
+
     private String pagingPosition = "top";
     private String emptyMessage = "";
     private String template = null;
@@ -95,6 +97,11 @@ public class PagingListbox extends Idspace implements AfterCompose {
             listbox.setRows(rows);
         }
 
+        String height = calculateListboxHeight();
+        if (height != null) {
+            listbox.setHeight(height);
+        }
+
         bottomPaging = new Paging();
         this.appendChild(bottomPaging);
         pagers.add(topPaging);
@@ -102,6 +109,39 @@ public class PagingListbox extends Idspace implements AfterCompose {
         for (Paging paging : pagers) {
             paging.addEventListener("onPaging", onPagingListener);
         }
+    }
+
+    private String calculateListboxHeight() {
+
+        String totalHeightStr = this.getHeight();
+        if (totalHeightStr == null || totalHeightStr.length() == 0) {
+            return null;
+        }
+
+        int totalHeight = convertDimension(totalHeightStr);
+
+        int pagingHeight;
+        if ("both".equals(pagingPosition)) {
+            pagingHeight = PAGING_COMPONENT_HEIGHT * 2;
+        } else {
+            pagingHeight = PAGING_COMPONENT_HEIGHT;
+        }
+
+        int litboxHeight = totalHeight - pagingHeight;
+        return convertDimension(litboxHeight);
+    }
+
+    private String convertDimension(int dimension) {
+        return String.format("%dpx", dimension);
+    }
+
+    private int convertDimension(String dimensionStr) {
+
+        if (dimensionStr.endsWith("px")) {
+            dimensionStr = dimensionStr.substring(0, dimensionStr.length() - 2);
+        }
+
+        return Integer.parseInt(dimensionStr);
     }
 
     private void changeTemplate() {
