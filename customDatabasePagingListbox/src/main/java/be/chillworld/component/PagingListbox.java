@@ -1,6 +1,7 @@
 package be.chillworld.component;
 
 import be.chillworld.model.PagingModel;
+import be.chillworld.model.PagingModel.ReloadListener;
 import be.chillworld.model.SortDirection;
 import be.chillworld.request.CurrentPageExceedException;
 import java.lang.reflect.Field;
