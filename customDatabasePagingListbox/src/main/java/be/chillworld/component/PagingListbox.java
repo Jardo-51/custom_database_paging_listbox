@@ -90,7 +90,11 @@ public class PagingListbox extends Idspace implements AfterCompose {
         listbox = new Listbox();
         this.appendChild(listbox);
         listbox.addEventListener("onSelect", onSelectListener);
-        listbox.setRows(rows);
+
+        if (rows > 0) {
+            listbox.setRows(rows);
+        }
+
         bottomPaging = new Paging();
         this.appendChild(bottomPaging);
         pagers.add(topPaging);
