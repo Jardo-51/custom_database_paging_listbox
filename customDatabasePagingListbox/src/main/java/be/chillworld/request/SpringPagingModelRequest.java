@@ -53,7 +53,7 @@ public abstract class SpringPagingModelRequest<T> implements PagingModelRequest<
         }
         // bug fix when usage with filters and currentPage is larger then totalpages.
         Page<T> page = getPage(request);
-        if (page.getTotalPages()<=activePage) {
+        if (page.getTotalPages()<=activePage && activePage > 0) {
             throw new CurrentPageExceedException();
         }
         totalSize = page.getTotalElements();
