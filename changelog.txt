@@ -1,0 +1,15 @@
+                 Change log for customPagingListbox-jrd
+
+----------------------------------------------------------------
+
+1.1.0 - 2017-11-12
+      - changed artifactId to customPagingListbox-jrd
+      - removed unnecessary dependencies (ZK)
+      - included class SpringPagingModelRequest in the main jar (with optional Spring Data dependency)
+      - added property rows
+      - fixed properties that weren't working: height, emptyMessage
+      - added method PagingModel.reload()
+      - fixed CurrentPageExceedException when the loaded data was empty
+      - code refactoring
+
+----------------------------------------------------------------
