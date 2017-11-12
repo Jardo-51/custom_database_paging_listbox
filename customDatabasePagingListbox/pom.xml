@@ -17,7 +17,7 @@
     </properties>
 
     <scm>
-        <developerConnection>scm:git:file://${project.basedir}</developerConnection>
+        <developerConnection>scm:git:file://${project.basedir}/../</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
